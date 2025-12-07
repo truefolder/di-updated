@@ -4,7 +4,7 @@ using TagCloud.Utils;
 
 namespace TagCloud;
 
-public class CircularCloudLayouter(Point center, ICoordinatesProvider coordinatesProvider)
+public class CircularCloudLayouter(Point center, ICoordinatesProvider coordinatesProvider) : ICircularCloudLayouter
 {
     public readonly List<Rectangle> Rectangles = [];
     

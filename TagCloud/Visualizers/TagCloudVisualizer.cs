@@ -6,7 +6,7 @@ using SixLabors.ImageSharp.Processing;
 
 namespace TagCloud.Visualizers;
 
-public class TagCloudVisualizer(Color rectangleColor, Color technicalFiguresColor)
+public class TagCloudVisualizer(Color rectangleColor, Color technicalFiguresColor) : ITagCloudVisualizer
 {
     public void DrawRectangles(List<Rectangle> rectangles, Size canvasSize, string savePath)
     {
