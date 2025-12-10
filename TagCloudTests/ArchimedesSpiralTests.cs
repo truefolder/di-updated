@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using SixLabors.ImageSharp;
 using TagCloud.CoordinatesProviders;
+using TagCloud.CoordinatesProviders.ArchimedesSpiral;
 
 namespace TagCloudTests;
 

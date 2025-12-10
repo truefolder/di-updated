@@ -2,7 +2,7 @@
 using TagCloud.CoordinatesProviders;
 using TagCloud.Utils;
 
-namespace TagCloud;
+namespace TagCloud.Layouters;
 
 public class CircularCloudLayouter(Point center, ICoordinatesProvider coordinatesProvider) : ICircularCloudLayouter
 {

@@ -2,6 +2,8 @@
 using SixLabors.ImageSharp;
 using TagCloud;
 using TagCloud.CoordinatesProviders;
+using TagCloud.CoordinatesProviders.ArchimedesSpiral;
+using TagCloud.Layouters;
 using TagCloud.Visualizers;
 
 namespace TagCloudTests;
