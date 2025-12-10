@@ -7,6 +7,7 @@ namespace TagCloud.Layouters;
 public class CircularCloudLayouter(Point center, ICoordinatesProvider coordinatesProvider) : ICircularCloudLayouter
 {
     public readonly List<Rectangle> Rectangles = [];
+    private readonly IEnumerator<PointF> _pointsEnumerator = coordinatesProvider.GetPoints().GetEnumerator();
     
     public Rectangle PutNextRectangle(Size rectangleSize)
     {
@@ -24,8 +25,10 @@ public class CircularCloudLayouter(Point center, ICoordinatesProvider coordinate
     
     private Point GetNextRectanglePoint(Size rectangleSize)
     {
-        foreach (var point in coordinatesProvider.GetPoints().Select(Point.Round))
+        while (_pointsEnumerator.MoveNext())
         {
+            var point = Point.Round(_pointsEnumerator.Current);
+            
             var possibleValidPoint = new Point(point.X - rectangleSize.Width / 2, point.Y - rectangleSize.Height / 2);
             var possibleValidRectangle = new Rectangle(possibleValidPoint, rectangleSize);
             var isIntersects = Rectangles.Any(existingRectangle => possibleValidRectangle.IntersectsWith(existingRectangle));
