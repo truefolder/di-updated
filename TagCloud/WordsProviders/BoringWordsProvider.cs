@@ -1,9 +1,8 @@
 ﻿namespace TagCloud.WordsProviders;
 
-public class BoringWordsProvider : IWordsProvider
+public class BoringWordsProvider(string path, IWordsProvider wordsProvider) : IBoringWordsProvider
 {
-    public IEnumerable<string> ReadWords()
-    {
-        throw new NotImplementedException();
-    }
+    private readonly HashSet<string> _words = wordsProvider.ReadWords(path).ToHashSet();
+
+    public HashSet<string> GetWords() => _words;
 }

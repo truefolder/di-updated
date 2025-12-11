@@ -4,5 +4,5 @@ namespace TagCloud.Visualizers;
 
 public interface ITagCloudVisualizer
 {
-    public void DrawRectangles(List<Rectangle> rectangles, Size canvasSize, string savePath);
+    public void Draw(List<Rectangle> rectangles, Size canvasSize, string savePath);
 }

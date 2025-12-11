@@ -2,8 +2,6 @@
 
 public class WordLowercaser : IWordNormalizer
 {
-    public string Normalize(string word)
-    {
-        throw new NotImplementedException();
-    }
+    public string Normalize(string word) =>
+        word.ToLower();
 }

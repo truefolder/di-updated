@@ -33,7 +33,7 @@ public class Tests
         var savePath = $"{AppDomain.CurrentDomain.BaseDirectory}/{testName}failed.png";
 
         var visualizer = new TagCloudVisualizer(Color.Black, Color.Red);
-        visualizer.DrawRectangles(layouter.Rectangles, new Size(1920, 1080), savePath);
+        visualizer.Draw(layouter.Rectangles, new Size(1920, 1080), savePath);
         
         TestContext.Out.WriteLine($"Saved visualization to {savePath})");
     }

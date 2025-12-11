@@ -37,7 +37,7 @@ public class TagCloudVisualizerTests
         var savePath =
             $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(DrawRectangles_ShouldSaveImageInPath_WhenCorrectPathIsProvided)}.png";
         
-        visualizer.DrawRectangles(rectangles, new Size(1920, 1080), 
+        visualizer.Draw(rectangles, new Size(1920, 1080), 
             savePath);
 
         File.Exists(savePath).Should().Be(true);

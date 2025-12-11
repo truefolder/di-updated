@@ -1,9 +1,9 @@
-﻿namespace TagCloud.WordsProcessing;
+﻿using TagCloud.WordsProviders;
 
-public class BoringWordsFilter : IWordFilter
+namespace TagCloud.WordsProcessing;
+
+public class BoringWordsFilter(IBoringWordsProvider provider) : IWordFilter
 {
-    public bool IsValid(string word)
-    {
-        throw new NotImplementedException();
-    }
+    public bool IsValid(string word) =>
+        !provider.GetWords().Contains(word);
 }

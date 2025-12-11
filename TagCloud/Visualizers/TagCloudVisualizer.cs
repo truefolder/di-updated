@@ -8,7 +8,7 @@ namespace TagCloud.Visualizers;
 
 public class TagCloudVisualizer(Color rectangleColor, Color technicalFiguresColor) : ITagCloudVisualizer
 {
-    public void DrawRectangles(List<Rectangle> rectangles, Size canvasSize, string savePath)
+    public void Draw(List<Rectangle> rectangles, Size canvasSize, string savePath)
     {
         var image = new Image<Rgba32>(canvasSize.Width, canvasSize.Height);
         var pen = Pens.Dot(rectangleColor, 1);
