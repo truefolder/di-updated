@@ -5,40 +5,37 @@ using TagCloud.CoordinatesProviders;
 using TagCloud.CoordinatesProviders.ArchimedesSpiral;
 using TagCloud.Layouters;
 using TagCloud.Visualizers;
+using TagCloud.WordsProcessing;
 
 namespace TagCloudTests;
 
 public class TagCloudVisualizerTests
 {
-    private TagCloudVisualizer visualizer;
-    private ICoordinatesProvider coordinatesProvider;
-    private CircularCloudLayouter layouter;
-    private readonly Random random = new();
+    private ITagCloudVisualizer _visualizer;
+    private ICoordinatesProvider _coordinatesProvider;
+    private readonly Random _random = new();
 
     [SetUp]
     public void SetUp()
     {
         var center = new Point(0, 0);
-        visualizer = new TagCloudVisualizer(Color.Blue, Color.DarkOrange);
-        coordinatesProvider = new ArchimedesSpiral(center, 3, 1);
-        layouter = new CircularCloudLayouter(center, coordinatesProvider);
+        _visualizer = new TagCloudVisualizer(Color.CadetBlue);
+        _coordinatesProvider = new ArchimedesSpiral(center, 3, 1);
     }
     
     [Test]
-    public void DrawRectangles_ShouldSaveImageInPath_WhenCorrectPathIsProvided()
+    public void Draw_ShouldSaveImageInPath_WhenCorrectPathIsProvided()
     {
-        var rectangles = new List<Rectangle>();
-        for (int i = 0; i < 200; ++i)
+        var items = new List<DrawnTag>
         {
-            var rectangle = layouter.PutNextRectangle(new Size(random.Next(10, 100), random.Next(10, 100)));
-            rectangles.Add(rectangle);
-        }
+            new(new TextTag("Hello world!", 10, 30), new Rectangle(100, 100, 200, 100), Color.Black),
+        };
 
         var savePath =
-            $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(DrawRectangles_ShouldSaveImageInPath_WhenCorrectPathIsProvided)}.png";
+            $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSaveImageInPath_WhenCorrectPathIsProvided)}.png";
         
-        visualizer.Draw(rectangles, new Size(1920, 1080), 
-            savePath);
+        _visualizer.Draw(items, new Size(1920, 1080), 
+            savePath, "Arial");
 
         File.Exists(savePath).Should().Be(true);
     }
