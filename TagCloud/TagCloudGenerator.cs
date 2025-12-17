@@ -1,0 +1,43 @@
+﻿using SixLabors.ImageSharp;
+using TagCloud.Colors;
+using TagCloud.Layouters;
+using TagCloud.Options;
+using TagCloud.Sizing;
+using TagCloud.Visualizers;
+using TagCloud.WordsProcessing;
+using TagCloud.WordsProviders;
+
+namespace TagCloud;
+
+public class TagCloudGenerator(IWordsProvider wordsSource,
+    IWordProcessor wordProcessor,
+    IFrequencyCounter frequencyAnalyzer,
+    IFontSizeCalculator fontSizeCalculator,
+    ITextTagSizeCalculator tagSizeCalculator,
+    ICircularCloudLayouterFactory layouterFactory,
+    IWordColorizer colorizer,
+    ITagCloudVisualizer visualizer) : ITagCloudGenerator
+{
+    public void Generate(TagCloudOptions options)
+    {
+        var canvasSize = new Size(options.ImageWidth, options.ImageHeight);
+
+        var words = wordsSource.ReadWords(options.InputFilePath);
+        var processed = wordProcessor.Process(words);
+        var frequencies = frequencyAnalyzer.CalculateFrequencies(processed);
+        var tags = fontSizeCalculator.CalculateSizes(frequencies, options.MinFontSize, options.MaxFontSize).ToList();
+
+        var layouter = layouterFactory.Create(canvasSize);
+
+        var drawnTags = new List<DrawnTag>();
+        foreach (var tag in tags)
+        {
+            var size = tagSizeCalculator.CalculateSize(tag, options.FontName);
+            var rect = layouter.PutNextRectangle(size);
+            var color = colorizer.Colorize(tag);
+            drawnTags.Add(new DrawnTag(tag, rect, color));
+        }
+
+        visualizer.Draw(drawnTags, canvasSize, options.OutputFilePath, options.FontName);
+    }
+}

@@ -5,5 +5,5 @@ public class WordProcessor(IWordNormalizer normalizer, IWordFilter filter) : IWo
     public IEnumerable<string> Process(IEnumerable<string> words) =>
         words.Select(normalizer.Normalize)
             .Where(word => !string.IsNullOrWhiteSpace(word))
-            .Where(word => !filter.IsValid(word));
+            .Where(filter.IsValid);
 }

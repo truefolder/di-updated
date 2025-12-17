@@ -2,5 +2,5 @@
 
 public interface IWordsProvider
 {
-    IEnumerable<string> ReadWords(string path);
+    IEnumerable<string> ReadWords(string? path);
 }

@@ -9,6 +9,8 @@ namespace TagCloud.Visualizers;
 
 public class TagCloudVisualizer(Color backgroundColor) : ITagCloudVisualizer
 {
+    private const int Padding = 4;
+    
     public void Draw(List<DrawnTag> tags, Size canvasSize, string savePath, string fontName)
     {
         var image = new Image<Rgba32>(canvasSize.Width, canvasSize.Height);
@@ -21,7 +23,9 @@ public class TagCloudVisualizer(Color backgroundColor) : ITagCloudVisualizer
             var font = fontFamily.CreateFont(drawnTag.Tag.FontSize);
             var options = new RichTextOptions(font)
             {
-                Origin = new PointF(drawnTag.Rectangle.Left, drawnTag.Rectangle.Top)
+                Origin = new PointF(drawnTag.Rectangle.Left + Padding, drawnTag.Rectangle.Top + Padding),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
             };
 
             image.Mutate(ctx => ctx.DrawText(options, drawnTag.Tag.Word, drawnTag.Color));

@@ -14,7 +14,7 @@ public class FontSizeCalculator : IFontSizeCalculator
         if (minCount != maxCount)
             return wordFrequencies.Select(word =>
             {
-                var normalizedFrequency = (word.Count - minCount) / (maxCount - minCount);
+                var normalizedFrequency = (float)(word.Count - minCount) / (maxCount - minCount);
                 var size = minSize + normalizedFrequency * (maxSize - minSize);
                 return new TextTag(word.Word, word.Count, size);
             });
