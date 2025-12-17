@@ -9,7 +9,7 @@ using TagCloud.WordsProviders;
 
 namespace TagCloud;
 
-public class TagCloudGenerator(IWordsProvider wordsSource,
+public class TagCloudGenerator(IWordsProviderResolver wordsProviderResolver,
     IWordProcessor wordProcessor,
     IFrequencyCounter frequencyAnalyzer,
     IFontSizeCalculator fontSizeCalculator,
@@ -22,7 +22,7 @@ public class TagCloudGenerator(IWordsProvider wordsSource,
     {
         var canvasSize = new Size(options.ImageWidth, options.ImageHeight);
 
-        var words = wordsSource.ReadWords(options.InputFilePath);
+        var words = wordsProviderResolver.ReadWords(options.InputFilePath);
         var processed = wordProcessor.Process(words);
         var frequencies = frequencyAnalyzer.CalculateFrequencies(processed);
         var tags = fontSizeCalculator.CalculateSizes(frequencies, options.MinFontSize, options.MaxFontSize).ToList();

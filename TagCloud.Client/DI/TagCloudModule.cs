@@ -13,16 +13,17 @@ public class TagCloudModule(string? boringWordsPath) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-        builder.RegisterType<WordsProvider>()
-            .As<IWordsProvider>()
-            .SingleInstance();
+        builder.RegisterType<WordsProviderResolver>().As<IWordsProviderResolver>().SingleInstance();
+        builder.RegisterType<TxtWordsProvider>().As<IWordsProvider>().SingleInstance();
+        builder.RegisterType<DocWordsProvider>().As<IWordsProvider>().SingleInstance();
+        builder.RegisterType<DocxWordsProvider>().As<IWordsProvider>().SingleInstance();
         builder.RegisterType<WordLowercaser>()
             .As<IWordNormalizer>()
             .SingleInstance();
         builder.Register(ctx =>
             {
-                var wordsProvider = ctx.Resolve<IWordsProvider>();
-                return new BoringWordsProvider(boringWordsPath, wordsProvider);
+                var wordsProviderResolver = ctx.Resolve<IWordsProviderResolver>();
+                return new BoringWordsProvider(boringWordsPath, wordsProviderResolver);
             })
             .As<IBoringWordsProvider>()
             .SingleInstance();
