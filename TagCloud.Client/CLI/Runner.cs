@@ -25,6 +25,10 @@ public class Runner
             FontName = options.FontName,
             MinFontSize = options.MinFontSize,
             MaxFontSize = options.MaxFontSize,
+            ColorizerName = options.ColorizerName,
+            Colors = options.Colors,
+            GradientFrom = options.GradientFrom,
+            GradientTo = options.GradientTo,
         };
 
         tagCloud.Generate(tagCloudOptions);

@@ -6,9 +6,9 @@ public class CliOptions
 {
     [Option("inputFile")] 
     public string InputFilePath { get; set; } = null!;
-    
-    [Option("boringWordsFile")]
-    public string? BoringWordsFilePath { get; set; }
+
+    [Option("boringWordsFile")] 
+    public string BoringWordsFilePath { get; set; } = null!;
 
     [Option("outputFile")]
     public string OutputFilePath { get; set; } = "tagcloud.png";
@@ -27,4 +27,16 @@ public class CliOptions
 
     [Option("max-font-size")] 
     public float MaxFontSize { get; set; } = 60;
+    
+    [Option("colorizer")]
+    public string ColorizerName { get; set; } = "gradient";
+    
+    [Option("colors")] 
+    public string Colors { get; set; } = "#ff0000";
+
+    [Option("gradient-from")] 
+    public string GradientFrom { get; set; } = "#ff0000";
+    
+    [Option("gradient-to")]
+    public string GradientTo { get; set; } = "#000000";
 }

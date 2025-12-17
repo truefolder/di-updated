@@ -10,7 +10,7 @@ using TagCloud.WordsProviders;
 
 namespace TagCloud.Client.DI;
 
-public class TagCloudModule(string? boringWordsPath) : Module
+public class TagCloudModule(string boringWordsPath) : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
