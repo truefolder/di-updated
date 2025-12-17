@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SixLabors.ImageSharp;
 using TagCloud.Colors;
+using TagCloud.Colors.Factories;
 using TagCloud.Layouters;
 using TagCloud.Sizing;
 using TagCloud.Visualizers;
@@ -45,8 +46,21 @@ public class TagCloudModule(string? boringWordsPath) : Module
         builder.RegisterType<CircularCloudLayouterFactory>()
             .As<ICircularCloudLayouterFactory>()
             .SingleInstance();
-        builder.RegisterInstance(new WordColorizer(Color.DarkBlue))
-            .As<IWordColorizer>();
+        builder.RegisterType<WordColorizerFactory>()
+            .As<IWordColorizerFactory>()
+            .SingleInstance();
+        builder.RegisterType<WordSingleColorizerCreator>()
+            .Keyed<IWordColorizerCreator>("single")
+            .SingleInstance();
+        builder.RegisterType<WordPaletteColorizerCreator>()
+            .Keyed<IWordColorizerCreator>("palette")
+            .SingleInstance();
+        builder.RegisterType<WordGradientColorizerCreator>()
+            .Keyed<IWordColorizerCreator>("gradient")
+            .SingleInstance();
+        builder.RegisterType<HexColorParser>()
+            .As<IColorParser>()
+            .SingleInstance();
         builder.RegisterInstance(new TagCloudVisualizer(Color.AntiqueWhite))
             .As<ITagCloudVisualizer>();
         builder.RegisterType<TagCloudGenerator>()

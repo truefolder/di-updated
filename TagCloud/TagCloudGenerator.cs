@@ -1,5 +1,6 @@
 ﻿using SixLabors.ImageSharp;
 using TagCloud.Colors;
+using TagCloud.Colors.Factories;
 using TagCloud.Layouters;
 using TagCloud.Options;
 using TagCloud.Sizing;
@@ -15,13 +16,14 @@ public class TagCloudGenerator(IWordsProviderResolver wordsProviderResolver,
     IFontSizeCalculator fontSizeCalculator,
     ITextTagSizeCalculator tagSizeCalculator,
     ICircularCloudLayouterFactory layouterFactory,
-    IWordColorizer colorizer,
+    IWordColorizerFactory colorizerFactory,
     ITagCloudVisualizer visualizer) : ITagCloudGenerator
 {
     public void Generate(TagCloudOptions options)
     {
         var canvasSize = new Size(options.ImageWidth, options.ImageHeight);
-
+        
+        var colorizer = colorizerFactory.Create(options);
         var words = wordsProviderResolver.ReadWords(options.InputFilePath);
         var processed = wordProcessor.Process(words);
         var frequencies = frequencyAnalyzer.CalculateFrequencies(processed);

@@ -12,4 +12,9 @@ public class TagCloudOptions
     public string FontName { get; set; } = "Arial";
     public float MinFontSize { get; set; } = 10;
     public float MaxFontSize { get; set; } = 60;
+    
+    public string ColorizerName { get; set; } = "gradient";
+    public string? Colors { get; set; }
+    public string? GradientFrom { get; set; }
+    public string? GradientTo { get; set; }
 }

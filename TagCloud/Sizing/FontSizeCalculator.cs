@@ -16,10 +16,10 @@ public class FontSizeCalculator : IFontSizeCalculator
             {
                 var normalizedFrequency = (float)(word.Count - minCount) / (maxCount - minCount);
                 var size = minSize + normalizedFrequency * (maxSize - minSize);
-                return new TextTag(word.Word, word.Count, size);
+                return new TextTag(word.Word, word.Count, size, normalizedFrequency);
             });
         
         var singleSize = (minSize + maxSize) / 2f;
-        return wordFrequencies.Select(f => new TextTag(f.Word, f.Count, singleSize));
+        return wordFrequencies.Select(f => new TextTag(f.Word, f.Count, singleSize, 0.5f));
     }
 }

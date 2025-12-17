@@ -28,7 +28,7 @@ public class TagCloudVisualizerTests
     {
         var items = new List<DrawnTag>
         {
-            new(new TextTag("Hello world!", 10, 30), new Rectangle(100, 100, 200, 100), Color.Black),
+            new(new TextTag("Hello world!", 10, 30, 0.5f), new Rectangle(100, 100, 200, 100), Color.Black),
         };
 
         var savePath =
