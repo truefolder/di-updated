@@ -11,20 +11,10 @@ namespace TagCloudTests;
 
 public class TagCloudVisualizerTests
 {
-    private ITagCloudVisualizer _visualizer;
-    private ICoordinatesProvider _coordinatesProvider;
-    private readonly Random _random = new();
-
-    [SetUp]
-    public void SetUp()
-    {
-        var center = new Point(0, 0);
-        _visualizer = new TagCloudVisualizer(Color.CadetBlue);
-        _coordinatesProvider = new ArchimedesSpiral(center, 3, 1);
-    }
+    private ITagCloudVisualizer _visualizer = new TagCloudVisualizer(Color.White);
     
     [Test]
-    public void Draw_ShouldSaveImageInPath_WhenCorrectPathIsProvided()
+    public void Draw_ShouldSavePngImageInPath_WhenCorrectPathIsProvided()
     {
         var items = new List<DrawnTag>
         {
@@ -32,7 +22,24 @@ public class TagCloudVisualizerTests
         };
 
         var savePath =
-            $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSaveImageInPath_WhenCorrectPathIsProvided)}.png";
+            $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSavePngImageInPath_WhenCorrectPathIsProvided)}.png";
+        
+        _visualizer.Draw(items, new Size(1920, 1080), 
+            savePath, "Arial");
+
+        File.Exists(savePath).Should().Be(true);
+    }
+    
+    [Test]
+    public void Draw_ShouldSaveJpgImageInPath_WhenCorrectPathIsProvided()
+    {
+        var items = new List<DrawnTag>
+        {
+            new(new TextTag("Hello world!", 10, 30, 0.5f), new Rectangle(100, 100, 200, 100), Color.Black),
+        };
+
+        var savePath =
+            $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSaveJpgImageInPath_WhenCorrectPathIsProvided)}.jpg";
         
         _visualizer.Draw(items, new Size(1920, 1080), 
             savePath, "Arial");

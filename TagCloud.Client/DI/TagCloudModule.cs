@@ -65,6 +65,6 @@ public class TagCloudModule(string boringWordsPath) : Module
             .As<ITagCloudVisualizer>();
         builder.RegisterType<TagCloudGenerator>()
             .As<ITagCloudGenerator>()
-            .SingleInstance();
+            .InstancePerDependency();
     }
 }
