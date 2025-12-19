@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CommandLine;
-using TagCloud.Client;
 using TagCloud.Client.CLI;
 
 var runner = new Runner();
