@@ -1,11 +1,11 @@
 ﻿using Autofac;
-using SixLabors.ImageSharp;
 using TagCloud.Colors;
 using TagCloud.Colors.Factories;
 using TagCloud.Layouters;
 using TagCloud.Sizing;
 using TagCloud.Visualizers;
 using TagCloud.WordsProcessing;
+using TagCloud.WordsProcessing.Filters;
 using TagCloud.WordsProviders;
 
 namespace TagCloud.Client.DI;
@@ -21,15 +21,11 @@ public class TagCloudModule(string boringWordsPath) : Module
         builder.RegisterType<WordLowercaser>()
             .As<IWordNormalizer>()
             .SingleInstance();
-        builder.Register(ctx =>
-            {
-                var wordsProviderResolver = ctx.Resolve<IWordsProviderResolver>();
-                return new BoringWordsProvider(boringWordsPath, wordsProviderResolver);
-            })
+        builder.RegisterType<BoringWordsProvider>()
             .As<IBoringWordsProvider>()
             .SingleInstance();
-        builder.RegisterType<BoringWordsFilter>()
-            .As<IWordFilter>()
+        builder.RegisterType<WordFilterFactory>()
+            .As<IWordFilterFactory>()
             .SingleInstance();
         builder.RegisterType<WordProcessor>()
             .As<IWordProcessor>()

@@ -27,7 +27,7 @@ public class TagCloudGenerator(IWordsProviderResolver wordsProviderResolver,
         var colorizer = colorizerFactory.Create(options);
         var wordsProvider = wordsProviderResolver.GetProvider(options.InputFilePath);
         var words = wordsProvider.ReadWords(options.InputFilePath);
-        var processed = wordProcessor.Process(words);
+        var processed = wordProcessor.Process(words, options);
         var frequencies = frequencyAnalyzer.CalculateFrequencies(processed);
         var tags = fontSizeCalculator.CalculateSizes(frequencies, options.MinFontSize, options.MaxFontSize).ToList();
 

@@ -2,5 +2,5 @@
 
 public interface IBoringWordsProvider
 {
-    public HashSet<string> GetWords();
+    public HashSet<string> GetWords(string path);
 }

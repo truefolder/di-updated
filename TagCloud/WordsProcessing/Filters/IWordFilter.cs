@@ -1,4 +1,4 @@
-﻿namespace TagCloud.WordsProcessing;
+﻿namespace TagCloud.WordsProcessing.Filters;
 
 public interface IWordFilter
 {
