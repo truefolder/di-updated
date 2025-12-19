@@ -9,6 +9,23 @@ namespace TagCloudTests;
 
 public class TagCloudTests
 {
+    TagCloudOptions options;
+    [SetUp]
+    public void SetUp()
+    {
+        options = new TagCloudOptions
+        {
+            ImageWidth = 1920,
+            ImageHeight = 1080,
+            FontName = "Arial",
+            MinFontSize = 10,
+            MaxFontSize = 60,
+            ColorizerName = "palette",
+            Colors = "#ff0000,#00ff00,#0000ff",
+            BackgroundColor = "#000000"
+        };
+    }
+    
     [Test]
     public void Generate_ShouldCreatePngFromTxtFileWithPaletteColorizer_WhenCorrectDataIsProvided()
     {
@@ -22,20 +39,10 @@ public class TagCloudTests
         var container = builder.Build();
         
         var generator = container.Resolve<ITagCloudGenerator>();
-        
-        var options = new TagCloudOptions
-        {
-            InputFilePath = inputPath,
-            BoringWordsFilePath = boringPath,
-            OutputFilePath = outputPath,
-            ImageWidth = 1920,
-            ImageHeight = 1080,
-            FontName = "Arial",
-            MinFontSize = 10,
-            MaxFontSize = 60,
-            ColorizerName = "palette",
-            Colors = "#ff0000,#00ff00,#0000ff"
-        };
+
+        options.InputFilePath = inputPath;
+        options.BoringWordsFilePath = boringPath;
+        options.OutputFilePath = outputPath;
         
         generator.Generate(options);
         
@@ -56,19 +63,9 @@ public class TagCloudTests
         
         var generator = container.Resolve<ITagCloudGenerator>();
         
-        var options = new TagCloudOptions
-        {
-            InputFilePath = inputPath,
-            BoringWordsFilePath = boringPath,
-            OutputFilePath = outputPath,
-            ImageWidth = 1920,
-            ImageHeight = 1080,
-            FontName = "Arial",
-            MinFontSize = 10,
-            MaxFontSize = 60,
-            ColorizerName = "palette",
-            Colors = "#ff0000,#00ff00,#0000ff"
-        };
+        options.InputFilePath = inputPath;
+        options.BoringWordsFilePath = boringPath;
+        options.OutputFilePath = outputPath;
         
         generator.Generate(options);
         
@@ -89,19 +86,9 @@ public class TagCloudTests
         
         var generator = container.Resolve<ITagCloudGenerator>();
         
-        var options = new TagCloudOptions
-        {
-            InputFilePath = inputPath,
-            BoringWordsFilePath = boringPath,
-            OutputFilePath = outputPath,
-            ImageWidth = 1920,
-            ImageHeight = 1080,
-            FontName = "Arial",
-            MinFontSize = 10,
-            MaxFontSize = 60,
-            ColorizerName = "palette",
-            Colors = "#ff0000,#00ff00,#0000ff"
-        };
+        options.InputFilePath = inputPath;
+        options.BoringWordsFilePath = boringPath;
+        options.OutputFilePath = outputPath;
         
         generator.Generate(options);
         
@@ -122,19 +109,9 @@ public class TagCloudTests
         
         var generator = container.Resolve<ITagCloudGenerator>();
         
-        var options = new TagCloudOptions
-        {
-            InputFilePath = inputPath,
-            BoringWordsFilePath = boringPath,
-            OutputFilePath = outputPath,
-            ImageWidth = 1920,
-            ImageHeight = 1080,
-            FontName = "Arial",
-            MinFontSize = 10,
-            MaxFontSize = 60,
-            ColorizerName = "palette",
-            Colors = "#ff0000,#00ff00,#0000ff"
-        };
+        options.InputFilePath = inputPath;
+        options.BoringWordsFilePath = boringPath;
+        options.OutputFilePath = outputPath;
         
         generator.Generate(options);
         

@@ -6,11 +6,11 @@ using SixLabors.ImageSharp.Processing;
 
 namespace TagCloud.Visualizers;
 
-public class TagCloudVisualizer(Color backgroundColor) : ITagCloudVisualizer
+public class TagCloudVisualizer : ITagCloudVisualizer
 {
     private const int Padding = 4;
     
-    public void Draw(List<DrawnTag> tags, Size canvasSize, string savePath, string fontName)
+    public void Draw(List<DrawnTag> tags, Size canvasSize, string savePath, string fontName, Color backgroundColor)
     {
         var image = new Image<Rgba32>(canvasSize.Width, canvasSize.Height);
         image.Mutate(ctx => ctx.Fill(backgroundColor));

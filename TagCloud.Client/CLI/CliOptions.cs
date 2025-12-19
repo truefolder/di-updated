@@ -33,6 +33,9 @@ public class CliOptions
     
     [Option("colors")] 
     public string Colors { get; set; } = "#ff0000";
+    
+    [Option("background-color")]
+    public string BackgroundColor { get; set; } = "#000000";
 
     [Option("gradient-from")] 
     public string GradientFrom { get; set; } = "#ff0000";

@@ -61,7 +61,7 @@ public class TagCloudModule(string boringWordsPath) : Module
         builder.RegisterType<HexColorParser>()
             .As<IColorParser>()
             .SingleInstance();
-        builder.RegisterInstance(new TagCloudVisualizer(Color.AntiqueWhite))
+        builder.RegisterType<TagCloudVisualizer>()
             .As<ITagCloudVisualizer>();
         builder.RegisterType<TagCloudGenerator>()
             .As<ITagCloudGenerator>()

@@ -5,7 +5,7 @@ using TagCloud.Layouters;
 
 namespace TagCloudTests;
 
-public class Tests
+public class CircularCloudLayouterTests
 {
     private ICircularCloudLayouter _layouter;
 

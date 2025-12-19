@@ -1,4 +1,5 @@
 ﻿using SixLabors.ImageSharp;
+using TagCloud.Colors;
 using TagCloud.Colors.Factories;
 using TagCloud.Layouters;
 using TagCloud.Options;
@@ -16,7 +17,8 @@ public class TagCloudGenerator(IWordsProviderResolver wordsProviderResolver,
     ITextTagSizeCalculator tagSizeCalculator,
     ICircularCloudLayouterFactory layouterFactory,
     IWordColorizerFactory colorizerFactory,
-    ITagCloudVisualizer visualizer) : ITagCloudGenerator
+    ITagCloudVisualizer visualizer,
+    IColorParser colorParser) : ITagCloudGenerator
 {
     public void Generate(TagCloudOptions options)
     {
@@ -40,6 +42,6 @@ public class TagCloudGenerator(IWordsProviderResolver wordsProviderResolver,
             drawnTags.Add(new DrawnTag(tag, rect, color));
         }
 
-        visualizer.Draw(drawnTags, canvasSize, options.OutputFilePath, options.FontName);
+        visualizer.Draw(drawnTags, canvasSize, options.OutputFilePath, options.FontName, colorParser.Parse(options.BackgroundColor));
     }
 }

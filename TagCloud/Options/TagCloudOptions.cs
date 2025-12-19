@@ -15,6 +15,7 @@ public class TagCloudOptions
     
     public string ColorizerName { get; set; } = "gradient";
     public string? Colors { get; set; }
+    public string BackgroundColor { get; set; } = "#000000";
     public string? GradientFrom { get; set; }
     public string? GradientTo { get; set; }
 }

@@ -7,7 +7,7 @@ namespace TagCloudTests;
 
 public class TagCloudVisualizerTests
 {
-    private ITagCloudVisualizer _visualizer = new TagCloudVisualizer(Color.White);
+    private ITagCloudVisualizer _visualizer = new TagCloudVisualizer();
     
     [Test]
     public void Draw_ShouldSavePngImageInPath_WhenCorrectPathIsProvided()
@@ -21,7 +21,7 @@ public class TagCloudVisualizerTests
             $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSavePngImageInPath_WhenCorrectPathIsProvided)}.png";
         
         _visualizer.Draw(items, new Size(1920, 1080), 
-            savePath, "Arial");
+            savePath, "Arial", Color.White);
 
         File.Exists(savePath).Should().Be(true);
     }
@@ -38,7 +38,7 @@ public class TagCloudVisualizerTests
             $"{AppDomain.CurrentDomain.BaseDirectory}/{nameof(Draw_ShouldSaveJpgImageInPath_WhenCorrectPathIsProvided)}.jpg";
         
         _visualizer.Draw(items, new Size(1920, 1080), 
-            savePath, "Arial");
+            savePath, "Arial", Color.White);
 
         File.Exists(savePath).Should().Be(true);
     }

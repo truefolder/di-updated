@@ -29,6 +29,7 @@ public class Runner
             Colors = options.Colors,
             GradientFrom = options.GradientFrom,
             GradientTo = options.GradientTo,
+            BackgroundColor = options.BackgroundColor
         };
 
         tagCloud.Generate(tagCloudOptions);
