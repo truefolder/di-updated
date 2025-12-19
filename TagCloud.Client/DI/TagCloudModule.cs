@@ -10,7 +10,7 @@ using TagCloud.WordsProviders;
 
 namespace TagCloud.Client.DI;
 
-public class TagCloudModule(string boringWordsPath) : Module
+public class TagCloudModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
@@ -58,7 +58,8 @@ public class TagCloudModule(string boringWordsPath) : Module
             .As<IColorParser>()
             .SingleInstance();
         builder.RegisterType<TagCloudVisualizer>()
-            .As<ITagCloudVisualizer>();
+            .As<ITagCloudVisualizer>()
+            .SingleInstance();
         builder.RegisterType<TagCloudGenerator>()
             .As<ITagCloudGenerator>()
             .InstancePerDependency();

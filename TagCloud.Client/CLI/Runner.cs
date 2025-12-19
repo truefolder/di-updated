@@ -9,7 +9,7 @@ public class Runner
     public int Run(CliOptions options)
     {
         var builder = new ContainerBuilder();
-        builder.RegisterModule(new TagCloudModule(options.BoringWordsFilePath));
+        builder.RegisterModule(new TagCloudModule());
         
         var container = builder.Build();
 

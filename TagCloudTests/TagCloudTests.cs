@@ -35,7 +35,7 @@ public class TagCloudTests
         var outputPath = $"{testDir}/test.png";
 
         var builder = new ContainerBuilder();
-        builder.RegisterModule(new TagCloudModule(boringPath));
+        builder.RegisterModule(new TagCloudModule());
         var container = builder.Build();
         
         var generator = container.Resolve<ITagCloudGenerator>();
@@ -58,7 +58,7 @@ public class TagCloudTests
         var outputPath = $"{testDir}/test.jpg";
 
         var builder = new ContainerBuilder();
-        builder.RegisterModule(new TagCloudModule(boringPath));
+        builder.RegisterModule(new TagCloudModule());
         var container = builder.Build();
         
         var generator = container.Resolve<ITagCloudGenerator>();
@@ -81,7 +81,7 @@ public class TagCloudTests
         var outputPath = $"{testDir}/test.png";
 
         var builder = new ContainerBuilder();
-        builder.RegisterModule(new TagCloudModule(boringPath));
+        builder.RegisterModule(new TagCloudModule());
         var container = builder.Build();
         
         var generator = container.Resolve<ITagCloudGenerator>();
@@ -104,7 +104,7 @@ public class TagCloudTests
         var outputPath = $"{testDir}/test.jpg";
 
         var builder = new ContainerBuilder();
-        builder.RegisterModule(new TagCloudModule(boringPath));
+        builder.RegisterModule(new TagCloudModule());
         var container = builder.Build();
         
         var generator = container.Resolve<ITagCloudGenerator>();
