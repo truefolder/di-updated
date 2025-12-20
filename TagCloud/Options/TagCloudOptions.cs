@@ -3,7 +3,7 @@
 public class TagCloudOptions
 {
     public string InputFilePath { get; set; } = null!;
-    public string? BoringWordsFilePath { get; set; }
+    public string BoringWordsFilePath { get; set; } = null!;
     public string OutputFilePath { get; set; } = "tagcloud.png";
 
     public int ImageWidth { get; set; } = 1920;
